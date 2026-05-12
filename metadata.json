@@ -1,0 +1,6 @@
+{
+  "name": "MABBITI Admin",
+  "description": "Admin dashboard for Mabbiti mobile app backend with statistics, establishment management, and user moderation.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": []
+}

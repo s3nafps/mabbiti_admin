@@ -1,0 +1,37 @@
+{
+  "common": {
+    "dashboard": "لوحة القيادة",
+    "establishments": "المؤسسات",
+    "categories": "الفئات",
+    "reviews": "المراجعات",
+    "users": "المستخدمين",
+    "clients": "العملاء",
+    "settings": "الإعدادات",
+    "logout": "تسجيل الخروج",
+    "search": "بحث...",
+    "add": "إضافة",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد",
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "status": "الحالة",
+    "actions": "الإجراءات"
+  },
+  "dashboard": {
+    "title": "نظرة عامة على الإحصائيات",
+    "totalEstablishments": "إجمالي المؤسسات",
+    "totalUsers": "إجمالي المستخدمين",
+    "totalReviews": "إجمالي المراجعات",
+    "activeCategories": "الفئات النشطة",
+    "realTime": "الوقت الحقيقي",
+    "byDay": "حسب اليوم",
+    "byMonth": "حسب الشهر",
+    "byYear": "حسب السنة",
+    "visitsChart": "زيارات المؤسسات",
+    "viewsChart": "مشاهدات الصور",
+    "ctaChart": "نقرات زر الإجراء"
+  }
+}

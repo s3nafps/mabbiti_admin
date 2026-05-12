@@ -1,0 +1,37 @@
+{
+  "common": {
+    "dashboard": "Tableau de bord",
+    "establishments": "Établissements",
+    "categories": "Catégories",
+    "reviews": "Avis",
+    "users": "Utilisateurs",
+    "clients": "Clients",
+    "settings": "Paramètres",
+    "logout": "Déconnexion",
+    "search": "Rechercher...",
+    "add": "Ajouter",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "active": "Actif",
+    "inactive": "Inactif",
+    "status": "Statut",
+    "actions": "Actions"
+  },
+  "dashboard": {
+    "title": "Aperçu des Statistiques",
+    "totalEstablishments": "Total Établissements",
+    "totalUsers": "Total Utilisateurs",
+    "totalReviews": "Total Avis",
+    "activeCategories": "Catégories Actives",
+    "realTime": "Temps Réel",
+    "byDay": "Par Jour",
+    "byMonth": "Par Mois",
+    "byYear": "Par An",
+    "visitsChart": "Visites des Établissements",
+    "viewsChart": "Vues d'Images",
+    "ctaChart": "Clics sur Bouton CTA"
+  }
+}

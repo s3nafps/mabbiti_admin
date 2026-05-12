@@ -1,0 +1,37 @@
+{
+  "common": {
+    "dashboard": "Dashboard",
+    "establishments": "Establishments",
+    "categories": "Categories",
+    "reviews": "Reviews",
+    "users": "Users",
+    "clients": "Clients",
+    "settings": "Settings",
+    "logout": "Logout",
+    "search": "Search...",
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "active": "Active",
+    "inactive": "Inactive",
+    "status": "Status",
+    "actions": "Actions"
+  },
+  "dashboard": {
+    "title": "Statistics Overview",
+    "totalEstablishments": "Total Establishments",
+    "totalUsers": "Total Users",
+    "totalReviews": "Total Reviews",
+    "activeCategories": "Active Categories",
+    "realTime": "Real-Time",
+    "byDay": "By Day",
+    "byMonth": "By Month",
+    "byYear": "By Year",
+    "visitsChart": "Establishment Visits",
+    "viewsChart": "Image Views",
+    "ctaChart": "CTA Button Clicks"
+  }
+}
