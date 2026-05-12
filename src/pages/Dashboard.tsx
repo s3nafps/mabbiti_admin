@@ -68,13 +68,13 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="space-y-8">
-      <div className="flex items-center justify-between">
+    <div className="space-y-6 sm:space-y-8">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
         <h1 className="text-2xl font-bold tracking-tight text-dark-blue">{t('dashboard.title')}</h1>
         <button
           onClick={handleSeed}
           disabled={isSeeding}
-          className="flex items-center gap-2 px-4 py-2 bg-dark-blue text-white rounded-lg text-sm font-medium hover:bg-opacity-90 transition-all disabled:opacity-50"
+          className="flex items-center justify-center gap-2 px-4 py-2 bg-dark-blue text-white rounded-lg text-sm font-medium hover:bg-opacity-90 transition-all disabled:opacity-50 w-full sm:w-auto"
         >
           {isSeeding ? <Loader2 className="h-4 w-4 animate-spin" /> : <Database className="h-4 w-4" />}
           {isSeeding ? 'Seeding...' : 'Seed Real Data'}
@@ -109,13 +109,13 @@ export default function Dashboard() {
       </div>
 
       {/* Tabs */}
-      <div className="glass-card p-1 inline-flex gap-1 border-gray-200/50">
+      <div className="glass-card p-1 inline-flex flex-wrap gap-1 border-gray-200/50 w-full sm:w-auto overflow-x-auto">
         {(['realtime', 'day', 'month', 'year'] as const).map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
             className={cn(
-              "px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all",
+              "px-4 sm:px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap flex-1 sm:flex-none",
               activeTab === tab 
                 ? "bg-dark-blue text-white shadow-lg shadow-dark-blue/10" 
                 : "text-gray-400 hover:text-dark-blue hover:bg-gray-50"

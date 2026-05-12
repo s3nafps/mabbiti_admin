@@ -37,7 +37,7 @@ const navItems = [
 
 export default function DashboardLayout() {
   const { t, i18n } = useTranslation();
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth >= 1024);
   const { user, role } = useAuthStore();
   const navigate = useNavigate();
   const isRtl = i18n.language === 'ar';
@@ -51,12 +51,12 @@ export default function DashboardLayout() {
     <div className={cn("min-h-screen bg-[#F4F5F7] flex", isRtl && "flex-row-reverse")}>
       {/* Sidebar Overlay for Mobile */}
       <AnimatePresence>
-        {!sidebarOpen && (
+        {sidebarOpen && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setSidebarOpen(true)}
+            onClick={() => setSidebarOpen(false)}
             className="fixed inset-0 bg-black/50 z-40 lg:hidden"
           />
         )}
@@ -67,7 +67,9 @@ export default function DashboardLayout() {
         initial={false}
         animate={{ width: sidebarOpen ? 280 : 0 }}
         className={cn(
-          "bg-dark-blue text-white flex-shrink-0 flex flex-col h-screen overflow-hidden transition-all z-50 sticky top-0",
+          "bg-dark-blue text-white flex-shrink-0 flex flex-col h-[100dvh] overflow-hidden transition-all z-50",
+          "absolute inset-y-0 lg:static top-0",
+          isRtl ? "right-0" : "left-0",
           !sidebarOpen && "w-0"
         )}
       >
@@ -121,7 +123,7 @@ export default function DashboardLayout() {
               onClick={() => setSidebarOpen(!sidebarOpen)}
               className="p-2 hover:bg-gray-50 rounded-lg transition-colors lg:hidden text-gray-500"
             >
-              {sidebarOpen ? <Menu className="h-5 w-5" /> : <X className="h-5 w-5" />}
+              {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
             <div className="flex items-center gap-2">
               <div className="h-2 w-2 rounded-full bg-primary-orange animate-pulse" />
