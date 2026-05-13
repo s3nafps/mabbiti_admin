@@ -66,19 +66,32 @@ export default function Login() {
       const userDoc = await getDoc(doc(db, 'users', uid));
       let role = userDoc.data()?.role;
 
+      // Create user document if it doesn't exist
+      if (!userDoc.exists()) {
+        const { setDoc, serverTimestamp } = await import('firebase/firestore');
+        const defaultRole = auth.currentUser?.email === 'mohamedsenator5@gmail.com' ? 'admin' : 'user';
+        
+        await setDoc(doc(db, 'users', uid), {
+          displayName: auth.currentUser?.displayName || 'User',
+          email: auth.currentUser?.email,
+          role: defaultRole,
+          isActive: true,
+          photoURL: auth.currentUser?.photoURL || '',
+          createdAt: serverTimestamp(),
+          updatedAt: serverTimestamp()
+        }, { merge: true });
+        
+        role = defaultRole;
+      }
+
       // Force admin role for the specific user
       if (auth.currentUser?.email === 'mohamedsenator5@gmail.com') {
         role = 'admin';
-        // Bootstrap/Update admin if needed
-        if (!userDoc.exists() || userDoc.data()?.role !== 'admin') {
+        // Ensure their role is updated in db if it was changed
+        if (userDoc.exists() && userDoc.data()?.role !== 'admin') {
           const { setDoc, serverTimestamp } = await import('firebase/firestore');
           await setDoc(doc(db, 'users', uid), {
-            displayName: auth.currentUser.displayName || 'Admin',
-            email: auth.currentUser.email,
             role: 'admin',
-            isActive: true,
-            photoURL: auth.currentUser.photoURL || '',
-            createdAt: userDoc.exists() ? userDoc.data()?.createdAt : serverTimestamp(),
             updatedAt: serverTimestamp()
           }, { merge: true });
         }

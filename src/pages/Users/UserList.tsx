@@ -34,6 +34,29 @@ export default function UserList() {
     }
   });
 
+  const roleMutation = useMutation({
+    mutationFn: ({ id, role }: { id: string, role: string }) => 
+      userService.updateRole(id, role),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['users'] });
+      toast.success('User role updated');
+    }
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: (id: string) => userService.delete(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['users'] });
+      toast.success('User deleted');
+    }
+  });
+
+  const cycleRole = (currentRole: string) => {
+    if (currentRole === 'user') return 'moderator';
+    if (currentRole === 'moderator') return 'admin';
+    return 'user';
+  };
+
   const columns = [
     columnHelper.accessor('displayName', {
       header: 'Name',
@@ -97,10 +120,22 @@ export default function UserList() {
           >
             {info.row.original.isActive ? <ShieldAlert className="h-4 w-4" /> : <ShieldCheck className="h-4 w-4" />}
           </button>
-          <button className="p-1.5 hover:bg-orange-50 text-orange-500 rounded-lg">
+          <button 
+            onClick={() => roleMutation.mutate({ id: info.row.original.id, role: cycleRole(info.row.original.role) })}
+            className="p-1.5 hover:bg-orange-50 text-orange-500 rounded-lg"
+            title="Change Role"
+          >
             <UserCog className="h-4 w-4" />
           </button>
-          <button className="p-1.5 hover:bg-gray-100 text-gray-400 hover:text-red-500 rounded-lg">
+          <button 
+            onClick={() => {
+              if (window.confirm('Are you sure you want to delete this user?')) {
+                deleteMutation.mutate(info.row.original.id);
+              }
+            }}
+            className="p-1.5 hover:bg-gray-100 text-gray-400 hover:text-red-500 rounded-lg"
+            title="Delete User"
+          >
             <Trash2 className="h-4 w-4" />
           </button>
         </div>
