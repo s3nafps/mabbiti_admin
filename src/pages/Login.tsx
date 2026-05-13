@@ -69,7 +69,8 @@ export default function Login() {
       // Create user document if it doesn't exist
       if (!userDoc.exists()) {
         const { setDoc, serverTimestamp } = await import('firebase/firestore');
-        const defaultRole = auth.currentUser?.email === 'mohamedsenator5@gmail.com' ? 'admin' : 'user';
+        const adminEmails = ['mohamedsenator5@gmail.com', 'brardadz0531@gmail.com'];
+        const defaultRole = adminEmails.includes(auth.currentUser?.email || '') ? 'admin' : 'user';
         
         await setDoc(doc(db, 'users', uid), {
           displayName: auth.currentUser?.displayName || 'User',
@@ -84,8 +85,9 @@ export default function Login() {
         role = defaultRole;
       }
 
+      const adminEmails = ['mohamedsenator5@gmail.com', 'brardadz0531@gmail.com'];
       // Force admin role for the specific user
-      if (auth.currentUser?.email === 'mohamedsenator5@gmail.com') {
+      if (adminEmails.includes(auth.currentUser?.email || '')) {
         role = 'admin';
         // Ensure their role is updated in db if it was changed
         if (userDoc.exists() && userDoc.data()?.role !== 'admin') {

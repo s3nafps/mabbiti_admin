@@ -40,7 +40,8 @@ export const initAuth = () => {
           role = userDoc.data().role as any;
         }
 
-        if (user.email === 'mohamedsenator5@gmail.com') {
+        const adminEmails = ['mohamedsenator5@gmail.com', 'brardadz0531@gmail.com'];
+        if (adminEmails.includes(user.email || '')) {
           role = 'admin';
         }
         setRole(role);

@@ -22,7 +22,7 @@ service cloud.firestore {
     function isAdmin() {
       return isVerified() && (
         (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && getUserData().role == 'admin') ||
-        (request.auth.token.email == 'mohamedsenator5@gmail.com' && request.auth.token.email_verified == true)
+        ((request.auth.token.email == 'mohamedsenator5@gmail.com' || request.auth.token.email == 'brardadz0531@gmail.com') && request.auth.token.email_verified == true)
       );
     }
 
@@ -56,7 +56,7 @@ service cloud.firestore {
       allow list: if isAdmin();
       allow create: if isSignedIn() && request.auth.uid == userId && isValidUser(incoming()) && (
         incoming().role == 'user' || 
-        (request.auth.token.email == 'mohamedsenator5@gmail.com' && request.auth.token.email_verified == true && incoming().role == 'admin')
+        ((request.auth.token.email == 'mohamedsenator5@gmail.com' || request.auth.token.email == 'brardadz0531@gmail.com') && request.auth.token.email_verified == true && incoming().role == 'admin')
       );
       allow update: if isVerified() && (
         (isAdmin() && isValidUser(incoming())) ||
